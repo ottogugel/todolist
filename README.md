@@ -12,6 +12,7 @@
 > * **Spring Boot 3** 🌱
 > * **Lombok**
 > * **H2 Database** 💧
+> * **Bcrpyt** 🔐 [https://github.com/patrickfav/bcrypt]
 
 ## Como executar
 
