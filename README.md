@@ -10,8 +10,8 @@
 
 > * **Java 17** ☕
 > * **Spring Boot 3** 🌱
-> * **Lombok**
-> * **H2 Database** 💧
+> * **Lombok** [https://projectlombok.org/]
+> * **H2 Database** 💧 [https://www.h2database.com/html/main.html]
 > * **Bcrpyt** 🔐 [https://github.com/patrickfav/bcrypt]
 
 ## Como executar

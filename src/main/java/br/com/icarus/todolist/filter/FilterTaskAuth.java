@@ -27,7 +27,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
     // Validando a rota
     var servletPath = request.getServletPath();
 
-    if (servletPath.equals("/tasks/")) {
+    if (servletPath.startsWith("/tasks/")) {
 
       // Pegar a autenticação (usuario e senha)
       var authorization = request.getHeader("Authorization");
@@ -42,8 +42,6 @@ public class FilterTaskAuth extends OncePerRequestFilter {
       String[] credentials = authString.split(":"); // Dividir os dois pontos
       String username = credentials[0]; // Divisão do usuário
       String password = credentials[1]; // Divisão da senha
-      System.out.println(username);
-      System.out.println(password);
       // Validar usuario
       var user = this.userRepository.findByUsername(username);
       if (user == null) {
@@ -52,6 +50,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
         // Validar a senha
         var passwordVerify = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
         if (passwordVerify.verified) {
+          request.setAttribute("idUser", user.getId());
           filterChain.doFilter(request, response);
         } else {
           response.sendError(401);
@@ -72,3 +71,4 @@ public class FilterTaskAuth extends OncePerRequestFilter {
 // @component/@restcontroller
 // Substring serve para extrair a parte de um conteudo
 // trim (remove os espaços que a palavra tem)
+// equals apenas para uma rota, startsWith tudo o que começa com aquela rota.
